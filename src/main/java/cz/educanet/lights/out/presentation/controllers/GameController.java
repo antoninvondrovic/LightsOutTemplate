@@ -1,5 +1,6 @@
 package cz.educanet.lights.out.presentation.controllers;
 
+import cz.educanet.lights.out.domain.Game;
 import cz.educanet.lights.out.domain.interfaces.ILightsOut;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,9 +27,11 @@ public class GameController {
 
     @FXML
     public void initialize() {
-        // TODO: Change here with your own impl
-        game = null;
-        // TODO: Change here with your own impl
+        game = new Game();
+
+        if (game.isGameOver()) {
+            game = null;
+        }
 
         if (game != null) {
             cells = new Button[SIZE][SIZE];
@@ -42,6 +45,7 @@ public class GameController {
                     int x = i;
                     cell.setOnMouseClicked(event -> {
                         game.makeMove(x, y);
+
                         rerender();
                     });
 
