@@ -2,10 +2,12 @@ package cz.educanet.lights.out.domain;
 
 import cz.educanet.lights.out.domain.interfaces.ILightsOut;
 
+import java.util.Random;
+
 public class Game implements ILightsOut {
 
     private boolean[][] grid = new boolean[5][5];
-    private boolean retard = true;
+    private boolean kok = false;
     int moves = 0;
 
     @Override
@@ -18,14 +20,6 @@ public class Game implements ILightsOut {
         if (false) {
             return true;
         } else {
-            if (retard) {
-                for (int i = 0; i < grid.length; i++) {
-                    for (int j = 0; j < grid[i].length; j++) {
-                        grid[i][j] = true;
-                    }
-                }
-                retard = false;
-            }
             return false;
         }
     }
@@ -37,14 +31,34 @@ public class Game implements ILightsOut {
 
     @Override
     public void makeMove(int x, int y) {
-        if(grid[x][y] = false) {
-            System.out.println("false");
-            grid[x][y] = true;
-        } else if (grid[x][y] = true){
-            System.out.println("true");
+        if (grid[x][y]) {
             grid[x][y] = false;
+            grid[x][y + 1] = false;
+            grid[x][y - 1] = false;
+            grid[x + 1][y] = false;
+            grid[x - 1][y] = false;
+            moves++;
+        } else {
+            if (grid[x][y+1] = false) {
+                System.out.println("kokot");
+                grid[x][y] = true;
+            }
+            grid[x][y] = true;
+            grid[x][y + 1] = true;
+            grid[x][y - 1] = true;
+            grid[x + 1][y] = true;
+            grid[x - 1][y] = true;
+            moves++;
         }
-        moves++;
     }
 
+    @Override
+    public void randomize() {
+        for (int x = 0; x < grid.length; x++) {
+            for (int y = 0; y < grid[x].length; y++) {
+                Random rd = new Random();
+                grid[x][y] = rd.nextBoolean();
+            }
+        }
+    }
 }

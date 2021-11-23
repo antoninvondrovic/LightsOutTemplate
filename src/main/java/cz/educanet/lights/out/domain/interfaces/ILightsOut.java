@@ -23,4 +23,7 @@ public interface ILightsOut {
      * @param y
      */
     void makeMove(int x, int y);
+
+    // Randomizes the board
+    void randomize();
 }

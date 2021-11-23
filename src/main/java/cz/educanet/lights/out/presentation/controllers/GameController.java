@@ -28,6 +28,7 @@ public class GameController {
     @FXML
     public void initialize() {
         game = new Game();
+        // game.randomize();
 
         if (game.isGameOver()) {
             game = null;
