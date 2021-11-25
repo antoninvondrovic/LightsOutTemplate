@@ -28,11 +28,7 @@ public class GameController {
     @FXML
     public void initialize() {
         game = new Game();
-        // game.randomize();
-
-        if (game.isGameOver()) {
-            game = null;
-        }
+        game.randomize();
 
         if (game != null) {
             cells = new Button[SIZE][SIZE];
@@ -54,7 +50,6 @@ public class GameController {
                     gpGame.add(cell, i + 1, j + 1);
                 }
             }
-
             rerender();
         }
     }
